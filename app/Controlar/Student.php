@@ -3,7 +3,9 @@
 namespace App\Controlar;
 
 use App\Suport\Database;
+use App\Suport\Auth;
 
+$auth = new Auth;
 
 
 

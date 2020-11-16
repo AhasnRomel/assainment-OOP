@@ -1,10 +1,11 @@
 <?php 
 	include_once "vendor/autoload.php";
-	
+	use App\Suport\Auth;
 	use App\Controlar\Student;
     use App\Controlar\Teacher;
     use App\Controlar\Staff;
 
+    $auth = new Auth;
 	$student = new Student;
     $teacher = new Teacher;
     $stuff = new Staff;
@@ -42,7 +43,9 @@
 
  			if (empty($name) || empty($last_name) || empty($email) || empty($cell) || empty($uname)) {
  				$msg = $student -> msg('All Fields Are Required');
- 			}else{
+ 			}elseif ($email) {
+               $msg = $auth ->  emailValid($email);
+            }else{
  				$msg = $student -> createStudentInfo($name, $last_name, $email, $cell, $uname);
  			}
  		}
